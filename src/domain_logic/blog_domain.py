@@ -6,6 +6,6 @@ from pydantic import BaseModel
 class BlogDomain(BaseModel):
     title: str
     body: str
-    created_date: Optional[datetime]
-    last_updated: Optional[datetime]
+    created_date: Optional[datetime] = datetime.now()
+    last_updated: Optional[datetime] = datetime.now()
     user_id: int
