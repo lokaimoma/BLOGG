@@ -13,13 +13,23 @@ DATABASE_URL = os.environ["DATABASE_URL"]
 
 
 def __create_engine():
+    """
+        This function takes care of creating the engine
+        for establishing the database connection.No need 
+        to call the function yourself.
+    """
     global __session_factory
     engine = create_async_engine(url=DATABASE_URL, echo=False)
     __session_factory = sessionmaker(
         bind=engine, class_=AsyncSession, expire_on_commit=False)
 
 
-def get_database_session():
+def get_database_session() -> AsyncSession:
+    """
+        This function returns an AsyncSession
+        object for performing asynchronous 
+        database operations.
+    """
     global __session_factory
     if not __session_factory:
         __create_engine()
