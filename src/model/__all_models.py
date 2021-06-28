@@ -1,3 +1,3 @@
-from .user import User
-from .blog import Blog
-from .engagement import Engagement
+from src.model.user import User
+from src.model.blog import Blog
+from src.model.engagement import Engagement

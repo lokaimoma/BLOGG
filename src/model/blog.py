@@ -1,11 +1,8 @@
-from typing import List
 from datetime import datetime
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import backref
 from . import SQLAlchemyBase
-from .user import User
-from .engagement import Engagement
 from src.domain_logic.blog_domain import BlogDomain
 
 
@@ -17,8 +14,8 @@ class Blog(SQLAlchemyBase):
     created_data: datetime = sa.Column(sa.DateTime)
     last_updated: datetime = sa.Column(sa.DateTime)
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
-    user: User = relationship("User")
-    engagements: List[Engagement] = relationship("Engagement", backref=backref(
+    user = relationship("user")
+    engagements: list = relationship("Engagement", backref=backref(
         "blog", cascade="all, delete-orphan"))
 
     def __init__(self, blogDomain: BlogDomain):
