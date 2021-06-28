@@ -147,3 +147,7 @@ cython_debug/
 
 # Local History for Visual Studio Code
 .history/
+
+#sqlite
+*.sqlite
+*.sqlite3
