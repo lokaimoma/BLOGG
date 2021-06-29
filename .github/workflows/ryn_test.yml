@@ -10,6 +10,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: sqlite+aiosqlite:///:memory:
 
     steps:
       - uses: actions/checkout@v2
