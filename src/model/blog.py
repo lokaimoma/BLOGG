@@ -1,7 +1,6 @@
 from datetime import datetime
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm import backref
 from . import SQLAlchemyBase
 from src.domain_logic.blog_domain import BlogDomain
 
@@ -14,9 +13,9 @@ class Blog(SQLAlchemyBase):
     created_data: datetime = sa.Column(sa.DateTime)
     last_updated: datetime = sa.Column(sa.DateTime)
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
-    user = relationship("user")
-    engagements: list = relationship("Engagement", backref=backref(
-        "blog", cascade="all, delete-orphan"))
+    user = relationship("User")
+    engagements: list = relationship(
+        "Engagement", back_populates="blog", cascade="all, delete-orphan")
 
     def __init__(self, blogDomain: BlogDomain):
         self.title = blogDomain.title

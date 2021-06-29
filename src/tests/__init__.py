@@ -29,17 +29,19 @@ def get_test_database_session() -> AsyncSession:
     return __test_session_factory()
 
 
-def create_all_tables():
+async def create_all_tables():
     global __engine
     if not __engine:
         __create_test_engine()
     import src.model.__all_models
-    SQLAlchemyBase.metadata.create_all(__engine)
+    async with __engine.begin() as conn:
+        await conn.run_sync(SQLAlchemyBase.metadata.create_all)
 
 
-def drop_all_tables():
+async def drop_all_tables():
     global __engine
     if not __engine:
         __create_test_engine()
     import src.model.__all_models
-    SQLAlchemyBase.metadata.drop_all(__engine)
+    async with __engine.begin() as conn:
+        await conn.run_sync(SQLAlchemyBase.metadata.drop_all)

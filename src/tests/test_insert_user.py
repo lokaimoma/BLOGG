@@ -9,14 +9,16 @@ from src.usecases.insert_user import insert_user
 
 
 class InsertUser(unittest.TestCase):
-    def setUp(self):
+    @async_test
+    async def setUp(self):
         super(InsertUser, self).setUp()
         self.session = get_test_database_session()
-        create_all_tables()
+        await create_all_tables()
 
-    def tearDown(self):
+    @async_test
+    async def tearDown(self):
         super(InsertUser, self).tearDown()
-        drop_all_tables()
+        await drop_all_tables()
 
     @async_test
     async def test_insert_user(self):

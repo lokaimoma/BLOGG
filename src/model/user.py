@@ -13,9 +13,7 @@ class User(SQLAlchemyBase):
                               nullable=False, index=True)
     email: str = sa.Column(sa.String, unique=True, index=True, nullable=False)
     password: str = sa.Column(sa.String, nullable=False)
-    blogs: list = relationship("Blog", backref=backref(
-        "user", cascade="all, delete-orphan"))
-    engagements: list = relationship("Engagement", backref="user")
+    blogs: list = relationship("Blog", back_populates="user", cascade="all, delete-orphan")
 
     def __init__(self, userDomain: UserDomain):
         self.username = userDomain.username
