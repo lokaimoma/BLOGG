@@ -45,6 +45,46 @@ class InsertUser(unittest.TestCase):
         self.assertFalse(result)
         await drop_all_tables()
 
+    @async_test
+    async def test_insert_duplicate_username_user(self):
+        await create_all_tables()
+        user_data = {"username": "Mako",
+                     "email": "mako@mako_mail.com",
+                     "password": "Zu(|<erBerG"
+                     }
+        user_domain = UserDomain(**user_data)
+        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+
+        user_data = {"username": "Mako",
+                     "email": "mako@mako_mail1.com",
+                     "password": "Zu(|<erBerG"
+                     }
+
+        user_domain = UserDomain(**user_data)
+        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        self.assertFalse(result)
+        await drop_all_tables()
+
+    @async_test
+    async def test_insert_duplicate__user(self):
+        await create_all_tables()
+        user_data = {"username": "Mako",
+                     "email": "mako@mako_mail.com",
+                     "password": "Zu(|<erBerG"
+                     }
+        user_domain = UserDomain(**user_data)
+        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+
+        user_data = {"username": "Mako",
+                     "email": "mako@mako_mail.com",
+                     "password": "Zu(|<erBerG"
+                     }
+
+        user_domain = UserDomain(**user_data)
+        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        self.assertFalse(result)
+        await drop_all_tables()
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
