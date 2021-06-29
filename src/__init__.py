@@ -24,5 +24,7 @@ def create_app() -> FastAPI:
 
     if not __app:
         __app = FastAPI()
+        from src.views.index import router as pagesRouter
+        __app.include_router(router=pagesRouter)
 
     return __app
