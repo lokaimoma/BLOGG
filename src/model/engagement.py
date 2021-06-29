@@ -1,4 +1,5 @@
 import sqlalchemy as sa
+from sqlalchemy.orm import relationship
 from . import SQLAlchemyBase
 from src.domain_logic.engagement_domain import EngagementDomain
 
@@ -10,7 +11,7 @@ class Engagement(SQLAlchemyBase):
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
     isLiked: bool = sa.Column(sa.Boolean)
     isDisLiked: bool = sa.Column(sa.Boolean)
-
+    blog = relationship("Blog")
 
     def __init__(self, engagementDomain: EngagementDomain):
         self.blog_id = engagementDomain.blog_id

@@ -4,3 +4,4 @@ aiosqlite==0.17.0
 uvicorn==0.14.0
 alembic==1.6.5
 passlib==1.7.4
+aiounittest==1.4.0
