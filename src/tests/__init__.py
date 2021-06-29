@@ -33,13 +33,13 @@ def create_all_tables():
     global __engine
     if not __engine:
         __create_test_engine()
-
-    SQLAlchemyBase.metadata.craete_all(__engine)
+    import src.model.__all_models
+    SQLAlchemyBase.metadata.create_all(__engine)
 
 
 def drop_all_tables():
     global __engine
     if not __engine:
         __create_test_engine()
-
+    import src.model.__all_models
     SQLAlchemyBase.metadata.drop_all(__engine)
