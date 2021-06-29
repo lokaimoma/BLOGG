@@ -9,19 +9,13 @@ from src.usecases.insert_user import insert_user
 
 
 class InsertUser(unittest.TestCase):
-    @async_test
-    async def setUp(self):
-        super(InsertUser, self).setUp()
-        self.session = get_test_database_session()
-        await create_all_tables()
-
-    @async_test
-    async def tearDown(self):
-        super(InsertUser, self).tearDown()
-        await drop_all_tables()
+    # Using setup and teardown functions was throwing exceptions
+    # from aiounittest library. So had to create and drop tables
+    # after each test.
 
     @async_test
     async def test_insert_user(self):
+        await create_all_tables()
         user_data = {"username": "Mako",
                      "email": "mako@mako_mail.com",
                      "password": "Zu(|<erBerG"
@@ -29,19 +23,26 @@ class InsertUser(unittest.TestCase):
         user_domain = UserDomain(**user_data)
         result = await insert_user(userDomain=user_domain, func=get_test_database_session)
         self.assertTrue(result)
+        await drop_all_tables()
 
-    # @async_test
-    # async def test_insert_duplicate_user(self):
-    #     user_data = {"username": "Mako",
-    #                  "email": "mako@mako_mail.com",
-    #                  "password": "Zu(|<erBerG"
-    #                  }
-    #     user_domain = UserDomain(**user_data)
-    #     result = await insert_user(userDomain=user_domain, func=get_test_database_session)
-    #     user_data = {"username": "Mako",
-    #                  "email": "mako@mako_mail.com",
-    #                  "password": "Zu(|<erBerG"
-    #                  }
+    async def test_insert_duplicate_email_user(self):
+        await create_all_tables()
+        user_data = {"username": "Mako",
+                     "email": "mako@mako_mail.com",
+                     "password": "Zu(|<erBerG"
+                     }
+        user_domain = UserDomain(**user_data)
+        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+
+        user_data = {"username": "Sam",
+                     "email": "mako@mako_mail.com",
+                     "password": "Zu(|<erBerG"
+                     }
+
+        user_domain = UserDomain(**user_data)
+        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        self.assertFalse(result)
+        await drop_all_tables()
 
 
 if __name__ == "__main__":
