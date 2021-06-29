@@ -1,4 +1,3 @@
-import asyncio
 import unittest
 from aiounittest import async_test
 from . import get_test_database_session
