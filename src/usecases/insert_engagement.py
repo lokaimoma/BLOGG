@@ -9,7 +9,9 @@ from src.model.engagement import Engagement
 
 async def insertEngagement(engagementDomain: EngagementDomain, func: Callable[[], AsyncSession] = get_database_session):
     async with func() as session:
-        engagementExists = await __checkEngagementExists(session=session, blog_id=engagementDomain.blog_id, user_id=engagementDomain.user_id)
+        engagementExists = await __checkEngagementExists(session=session,
+                                                         blog_id=engagementDomain.blog_id,
+                                                         user_id=engagementDomain.user_id)
 
         if engagementExists:
             await update_engagement(session=session, engagementDomain=engagementDomain)
