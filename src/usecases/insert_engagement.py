@@ -1,3 +1,4 @@
+from typing import Callable
 from sqlalchemy import select
 from sqlalchemy import func
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -6,8 +7,8 @@ from src.domain_logic.engagement_domain import EngagementDomain
 from src.model.engagement import Engagement
 
 
-async def insertEngagement(engagementDomain: EngagementDomain):
-    async with get_database_session() as session:
+async def insertEngagement(engagementDomain: EngagementDomain, func: Callable[[], AsyncSession] = get_database_session):
+    async with func() as session:
         engagementExists = await __checkEngagementExists(session=session, blog_id=engagementDomain.blog_id, user_id=engagementDomain.user_id)
 
         if engagementExists:

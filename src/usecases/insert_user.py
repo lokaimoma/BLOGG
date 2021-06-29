@@ -7,7 +7,7 @@ from src.domain_logic.user_domain import UserDomain
 from src.model.user import User
 
 
-async def insert_user(userDomain: UserDomain, func=get_database_session) -> bool:
+async def insert_user(userDomain: UserDomain, func: Callable[[], AsyncSession] = get_database_session) -> bool:
     async with func() as session:
         isUserRegistered = await __check_if_user_exist(session=session, email=userDomain.email, username=userDomain.username)
 
