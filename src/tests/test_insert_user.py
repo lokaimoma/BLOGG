@@ -30,6 +30,19 @@ class InsertUser(unittest.TestCase):
         result = await insert_user(userDomain=user_domain, func=get_test_database_session)
         self.assertTrue(result)
 
+    # @async_test
+    # async def test_insert_duplicate_user(self):
+    #     user_data = {"username": "Mako",
+    #                  "email": "mako@mako_mail.com",
+    #                  "password": "Zu(|<erBerG"
+    #                  }
+    #     user_domain = UserDomain(**user_data)
+    #     result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+    #     user_data = {"username": "Mako",
+    #                  "email": "mako@mako_mail.com",
+    #                  "password": "Zu(|<erBerG"
+    #                  }
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
