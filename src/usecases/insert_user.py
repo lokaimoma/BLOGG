@@ -7,7 +7,7 @@ from src.domain_logic.user_domain import UserDomain
 from src.model.user import User
 
 
-async def insert_user(userDomain: UserDomain, func = get_database_session) -> bool:
+async def insert_user(userDomain: UserDomain, func=get_database_session) -> bool:
     async with func() as session:
         isUserRegistered = await __check_if_user_exist(session=session, email=userDomain.email, username=userDomain.username)
 
@@ -21,8 +21,15 @@ async def insert_user(userDomain: UserDomain, func = get_database_session) -> bo
 
 async def __check_if_user_exist(session: AsyncSession,
                                 email: str, username: str) -> bool:
-    query = select(func.count(User.id)).filter(
-        User.username == username, User.email == email)
-    result = await session.execute(query)
-    result = result.scalar()
-    return (result == 1)
+    queryUsernameExists = select(func.count(User.id)).filter(
+        User.username == username)
+    queryEmailExists = select(func.count(User.id)).filter(User.email == email)
+    usernameExists = await session.execute(queryUsernameExists)
+    emailExists = await session.execute(queryEmailExists)
+    if usernameExists.scalar() == 1:
+        return True
+
+    if emailExists.scalar() == 1:
+        return True
+
+    return False
