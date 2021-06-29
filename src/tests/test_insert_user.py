@@ -25,6 +25,7 @@ class InsertUser(unittest.TestCase):
         self.assertTrue(result)
         await drop_all_tables()
 
+    @async_test
     async def test_insert_duplicate_email_user(self):
         await create_all_tables()
         user_data = {"username": "Mako",
