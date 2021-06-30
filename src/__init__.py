@@ -23,8 +23,11 @@ def create_app() -> FastAPI:
     global __app
 
     if not __app:
-        __app = FastAPI()
+        __app = FastAPI(title="BLOGG API",
+                        description="An api backend for a blogging app.", version="0.1.0")
         from src.views.index import router as pagesRouter
+        from src.api.users_api import user_router
         __app.include_router(router=pagesRouter)
+        __app.include_router(router=user_router)
 
     return __app

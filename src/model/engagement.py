@@ -11,7 +11,7 @@ class Engagement(SQLAlchemyBase):
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
     isLiked: bool = sa.Column(sa.Boolean)
     isDisLiked: bool = sa.Column(sa.Boolean)
-    blog = relationship("Blog")
+    blog = relationship("Blog", back_populates="engagements")
 
     def __init__(self, engagementDomain: EngagementDomain):
         self.blog_id = engagementDomain.blog_id
