@@ -6,8 +6,8 @@ from . import create_all_tables
 from . import drop_all_tables
 from src.domain_logic.user_domain import UserDomain
 from src.domain_logic.blog_domain import BlogDomain
-from src.usecases.insert_user import insert_user
-from src.usecases.insert_blog import insert_blog
+from src.usecases.insert.insert_user import insert_user
+from src.usecases.insert.insert_blog import insert_blog
 from src.model.blog import Blog
 
 

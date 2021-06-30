@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 import starlette.status as StatusCode
 from src.domain_logic.engagement_domain import EngagementDomain
-from src.usecases.insert_engagement import insertEngagement
+from src.usecases.insert.insert_engagement import insertEngagement
 
 
 engagement_router = APIRouter(

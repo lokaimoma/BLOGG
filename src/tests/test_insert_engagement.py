@@ -7,9 +7,9 @@ from . import drop_all_tables
 from src.domain_logic.user_domain import UserDomain
 from src.domain_logic.blog_domain import BlogDomain
 from src.domain_logic.engagement_domain import EngagementDomain
-from src.usecases.insert_user import insert_user
-from src.usecases.insert_blog import insert_blog
-from src.usecases.insert_engagement import insertEngagement
+from src.usecases.insert.insert_user import insert_user
+from src.usecases.insert.insert_blog import insert_blog
+from src.usecases.insert.insert_engagement import insertEngagement
 from src.model.engagement import Engagement
 
 

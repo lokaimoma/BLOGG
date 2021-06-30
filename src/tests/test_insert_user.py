@@ -4,7 +4,7 @@ from . import get_test_database_session
 from . import create_all_tables
 from . import drop_all_tables
 from src.domain_logic.user_domain import UserDomain
-from src.usecases.insert_user import insert_user
+from src.usecases.insert.insert_user import insert_user
 
 
 class InsertUser(unittest.TestCase):

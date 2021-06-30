@@ -5,7 +5,7 @@ import starlette.status as StatusCode
 from src.domain_logic.user_domain import UserDomain
 from src.domain_logic.user_domain import User
 from src.util.mappers.user_domain_mapper import map_UserDomain_to_UserBaseModel as mapper
-from src.usecases.insert_user import insert_user
+from src.usecases.insert.insert_user import insert_user
 
 
 user_router = APIRouter(prefix=f"{prefix}/user", tags=["users"])
