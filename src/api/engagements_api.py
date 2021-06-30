@@ -15,4 +15,4 @@ engagement_router = APIRouter(
                         status_code=StatusCode.HTTP_201_CREATED)
 async def insert_Engagement(engagement: EngagementDomain):
     await insertEngagement(engagementDomain=engagement)
-    return JSONResponse(content=engagement, media_type="application/json")
+    return JSONResponse(content=engagement.__dict__, media_type="application/json")
