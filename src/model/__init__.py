@@ -23,7 +23,7 @@ def __create_engine():
     engine = create_async_engine(url=DATABASE_URL, echo=False)
     __session_factory = sessionmaker(
         bind=engine, class_=AsyncSession, expire_on_commit=False)
-    import src.model.__all_models
+    from src.model.__all_models import User
     global SQLAlchemyBase
 
 
