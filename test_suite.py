@@ -1,7 +1,7 @@
 import unittest
-from src.tests.test_insert_user import InsertUser
-from src.tests.test_insert_blog import InsertBlog
-from src.tests.test_insert_engagement import InsertEngament
+from src.tests.insert_tests.test_insert_user import InsertUser
+from src.tests.insert_tests.test_insert_blog import InsertBlog
+from src.tests.insert_tests.test_insert_engagement import InsertEngament
 
 
 suite1 = unittest.TestLoader().loadTestsFromTestCase(InsertUser)
