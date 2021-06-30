@@ -20,3 +20,4 @@ async def insert(blogInfo: BlogDomain):
 @blog_router.post(path="/update", response_model=BlogDomain, status_code=StatusCode.HTTP_201_CREATED)
 async def update(blog_id: int, blog_info: BlogDomain):
     await update_blog(blog_id=blog_id, blog_info=blog_info)
+    return JSONResponse(content=convertor(blogDomain=blog_info), media_type="application/json")
