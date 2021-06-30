@@ -13,7 +13,7 @@ class Blog(SQLAlchemyBase):
     created_data: datetime = sa.Column(sa.DateTime)
     last_updated: datetime = sa.Column(sa.DateTime)
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
-    user = relationship("User")
+    user = relationship("User", back_populates="blogs")
     engagements: list = relationship(
         "Engagement", back_populates="blog", cascade="all, delete-orphan")
 

@@ -30,6 +30,7 @@ def get_database_session() -> AsyncSession:
         object for performing asynchronous 
         database operations.
     """
+    import src.model.__all_models
     global __session_factory
     if not __session_factory:
         __create_engine()
