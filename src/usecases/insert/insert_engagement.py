@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.model import get_database_session
 from src.domain_logic.engagement_domain import EngagementDomain
 from src.model.engagement import Engagement
+from src.usecases.update.update_engagement import update_engagement
 
 
 async def insertEngagement(engagementDomain: EngagementDomain, func: Callable[[], AsyncSession] = get_database_session):
@@ -14,7 +15,7 @@ async def insertEngagement(engagementDomain: EngagementDomain, func: Callable[[]
                                                          user_id=engagementDomain.user_id)
 
         if engagementExists:
-            await update_engagement(session=session, engagementDomain=engagementDomain)
+            await update_engagement(engagement_domain=engagementDomain)
             return
 
         engagement = Engagement(engagementDomain=engagementDomain)
@@ -28,15 +29,5 @@ async def __checkEngagementExists(session: AsyncSession, blog_id: int, user_id: 
 
     result = await session.execute(query)
     result = result.scalar()
-    return (result == 1)
+    return result == 1
 
-
-async def update_engagement(session: AsyncSession, engagementDomain: EngagementDomain):
-    query = select(Engagement).filter(Engagement.blog_id ==
-                                      engagementDomain.blog_id, Engagement.user_id == engagementDomain.user_id)
-    result = await session.execute(query)
-    # Crash In Case Of None
-    engagement: Engagement = result.scalar_one()
-    engagement.isDisLiked = engagementDomain.isDisliked
-    engagement.isLiked = engagement.isLiked
-    await session.commit()
