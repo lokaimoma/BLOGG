@@ -27,7 +27,9 @@ def create_app() -> FastAPI:
                         description="An api backend for a blogging app.", version="0.1.0")
         from src.views.index import router as pagesRouter
         from src.api.users_api import user_router
+        from src.api.blogs_api import blog_router
         __app.include_router(router=pagesRouter)
         __app.include_router(router=user_router)
+        __app.include_router(router=blog_router)
 
     return __app

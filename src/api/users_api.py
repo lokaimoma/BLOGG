@@ -8,7 +8,7 @@ from src.domain_logic.user_domain import map_UserDomain_to_UserBaseModel as mapp
 from src.usecases.insert_user import insert_user
 
 
-user_router = APIRouter(prefix=f"{prefix}/user", tags=["user"])
+user_router = APIRouter(prefix=f"{prefix}/user", tags=["users"])
 
 
 @user_router.post(path="/register", response_model=User,
