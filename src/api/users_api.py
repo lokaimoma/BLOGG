@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 import starlette.status as StatusCode
 from src.domain_logic.user_domain import UserDomain
 from src.domain_logic.user_domain import User
-from src.domain_logic.user_domain import map_UserDomain_to_UserBaseModel as mapper
+from src.util.mappers.user_domain_mapper import map_UserDomain_to_UserBaseModel as mapper
 from src.usecases.insert_user import insert_user
 
 
