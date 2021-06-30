@@ -1,8 +1,8 @@
 import unittest
 from aiounittest import async_test
-from . import get_test_database_session
-from . import create_all_tables
-from . import drop_all_tables
+from src.tests import get_test_database_session
+from src.tests import create_all_tables
+from src.tests import drop_all_tables
 from src.domain_logic.user_domain import UserDomain
 from src.usecases.insert.insert_user import insert_user
 
