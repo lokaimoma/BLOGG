@@ -39,4 +39,4 @@ async def update_engagement(session: AsyncSession, engagementDomain: EngagementD
     engagement: Engagement = result.scalar_one()
     engagement.isDisLiked = engagementDomain.isDisliked
     engagement.isLiked = engagement.isLiked
-    await session.commit
+    await session.commit()
