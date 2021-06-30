@@ -38,10 +38,11 @@ class InsertBlog(unittest.TestCase):
         session = get_test_database_session()
         result = await session.execute(query)
         blog: Blog = result.scalar_one_or_none()
+        await session.close()
 
         self.assertIsNotNone(blog)
-        self.assertEqual(blog.title, "Async capabilities")
-        self.assertEqual(blog.body, "With async we can write apis that scale")
+        self.assertEqual(blog.title, blog_data["title"])
+        self.assertEqual(blog.body, blog_data["body"])
         await drop_all_tables()
 
 
