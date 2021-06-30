@@ -6,4 +6,4 @@ app = create_app()
 
 
 if __name__ == "__main__":
-    uvicorn.run("engine:app")
+    uvicorn.run("engine:app", reload=True, reload_dirs=["./src"])
