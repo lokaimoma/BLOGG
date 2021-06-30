@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.domain_logic.blog_domain import BlogDomain
 from src.model import get_database_session
 from src.model.blog import Blog
+from src.tests import get_test_database_session
 from src.usecases.insert.insert_blog import insert_blog
 
 
@@ -22,4 +23,3 @@ async def update_blog(blog_id: int, blog_info: BlogDomain, func: Callable[[], As
             return
 
         await insert_blog(blogDomain=blog_info)
-        return

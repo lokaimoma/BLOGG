@@ -6,4 +6,3 @@ class EngagementDomain(BaseModel):
     blog_id: int
     user_id: int
     isLiked: Optional[bool] = False
-    isDisliked: Optional[bool] = False
