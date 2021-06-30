@@ -44,8 +44,8 @@ class InsertEngament(unittest.TestCase):
 
         result = await session.execute(query)
         engament: Engagement = result.scalar_one_or_none()
+        await session.close()
         self.assertIsNotNone(engament)
         self.assertTrue(engament.isLiked)
-        self.assertFalse(engament.isDisLiked)
 
         await drop_all_tables()

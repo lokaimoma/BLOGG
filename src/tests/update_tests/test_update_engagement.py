@@ -3,18 +3,20 @@ from aiounittest import async_test
 from sqlalchemy import select
 
 from src.domain_logic.blog_domain import BlogDomain
+from src.domain_logic.engagement_domain import EngagementDomain
 from src.domain_logic.user_domain import UserDomain
-from src.model.blog import Blog
-from src.tests import get_test_database_session, create_all_tables, drop_all_tables
+from src.model.engagement import Engagement
+from src.tests import create_all_tables, drop_all_tables, get_test_database_session
 from src.usecases.insert.insert_blog import insert_blog
+from src.usecases.insert.insert_engagement import insertEngagement
 from src.usecases.insert.insert_user import insert_user
-from src.usecases.update.update_blog import update_blog
+from src.usecases.update.update_engagement import update_engagement
 
 
-class UpdateBlogTestCase(unittest.TestCase):
+class UpdateEngagementTestCase(unittest.TestCase):
 
     @async_test
-    async def test_update_blog(self):
+    async def test_update_engagement(self):
         await create_all_tables()
 
         user_data = {"username": "Mako",
@@ -32,25 +34,23 @@ class UpdateBlogTestCase(unittest.TestCase):
         blog_domain = BlogDomain(**blog_data)
         await insert_blog(blogDomain=blog_domain, func=get_test_database_session)
 
-        updated_blog = {"title": "Wonders of async",
-                        "body": "Scalablilty is a main factor for embracing "
-                                "async into project now adays. Though there "
-                                "are other interesting reasons why you would "
-                                "want to use it.",
-                        "user_id": 1
-                        }
-        updated_blog_domain = BlogDomain(**updated_blog)
-        await update_blog(blog_id=1, blog_info=updated_blog_domain,
-                          func=get_test_database_session)
+        engagement_data = {"blog_id": 1, "user_id": 1, "isLiked": True}
+        engagement_domain = EngagementDomain(**engagement_data)
+        await insertEngagement(engagementDomain=engagement_domain, func=get_test_database_session)
 
-        query = select(Blog).filter(Blog.id == 1)
+        updated_engagement_data = {"blog_id": 1, "user_id": 1}
+        updated_engagement_domain = EngagementDomain(**updated_engagement_data)
+
+        await update_engagement(engagement_domain=updated_engagement_domain, func=get_test_database_session)
+
+        query = select(Engagement).filter(Engagement.id == 1)
         session = get_test_database_session()
         result = await session.execute(query)
-        blog: Blog = result.scalar_one_or_none()
+        engament: Engagement = result.scalar_one_or_none()
         await session.close()
-        self.assertIsNotNone(blog)
-        self.assertEqual(blog.title, updated_blog["title"])
-        self.assertEqual(blog.body, updated_blog["body"])
+
+        self.assertIsNotNone(engament)
+        self.assertFalse(engament.isLiked)
 
         await drop_all_tables()
 
