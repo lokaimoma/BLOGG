@@ -8,12 +8,20 @@ from src.domain_logic.blog_domain import BlogDomain
 from src.usecases.insert.insert_blog import insert_blog
 from src.util.mappers.blog_domain_to_json import blog_domain_json as convertor
 from ..domain_logic.blog_domain_detailed import BlogDomainDetail
+from ..usecases.getters.get_all_blogs import get_all_blogs
 from ..usecases.getters.get_blog_details import get_blog_details
 from ..usecases.getters.get_blogs_by_user_id import get_blogs_by_user_id
 from ..usecases.update.update_blog import update_blog
 from ..util.mappers.blog_model_to_blog_domain_json import blog_model_list_to_blog_domain_json
 
 blog_router = APIRouter(prefix=f"{prefix}/blog", tags=["blogs"])
+
+
+@blog_router.get("/", response_model=List[BlogDomain], status_code=StatusCode.HTTP_200_OK)
+def get_all():
+    blog_list = await get_all_blogs()
+    data = await blog_model_list_to_blog_domain_json(blog_list=blog_list)
+    return JSONResponse(content=data, media_type="application/json")
 
 
 @blog_router.post(path="/insert", response_model=BlogDomain, status_code=StatusCode.HTTP_201_CREATED)
