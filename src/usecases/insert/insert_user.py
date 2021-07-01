@@ -7,29 +7,32 @@ from src.domain_logic.user_domain import UserDomain
 from src.model.user import User
 
 
-async def insert_user(userDomain: UserDomain, func: Callable[[], AsyncSession] = get_database_session) -> bool:
-    async with func() as session:
-        isUserRegistered = await __check_if_user_exist(session=session, email=userDomain.email, username=userDomain.username)
+async def insert_user(user_domain: UserDomain,
+                      db_session_getter: Callable[[], AsyncSession] = get_database_session) -> bool:
+    async with db_session_getter() as session:
+        is_user_registered = await __check_if_user_exist(session=session,
+                                                         email=user_domain.email,
+                                                         username=user_domain.username)
 
-        if not isUserRegistered:
-            user = User(userDomain=userDomain)
+        if not is_user_registered:
+            user = User(user_domain=user_domain)
             session.add(user)
             await session.commit()
 
-        return (not isUserRegistered)
+        return not is_user_registered
 
 
 async def __check_if_user_exist(session: AsyncSession,
                                 email: str, username: str) -> bool:
-    queryUsernameExists = select(func.count(User.id)).filter(
+    query_username_exists = select(func.count(User.id)).filter(
         User.username == username)
-    queryEmailExists = select(func.count(User.id)).filter(User.email == email)
-    usernameExists = await session.execute(queryUsernameExists)
-    emailExists = await session.execute(queryEmailExists)
-    if usernameExists.scalar() == 1:
+    query_email_exists = select(func.count(User.id)).filter(User.email == email)
+    username_exists = await session.execute(query_username_exists)
+    email_exists = await session.execute(query_email_exists)
+    if username_exists.scalar() == 1:
         return True
 
-    if emailExists.scalar() == 1:
+    if email_exists.scalar() == 1:
         return True
 
     return False

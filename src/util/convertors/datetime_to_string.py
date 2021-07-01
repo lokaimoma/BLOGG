@@ -1,6 +1,6 @@
 from datetime import datetime
 
 
-def convert_datetime_to_string(object: datetime):
-    if isinstance(object, datetime):
-        return object.__str__()
+def convert_datetime_to_string(date_time: datetime):
+    if isinstance(date_time, datetime):
+        return date_time.__str__()

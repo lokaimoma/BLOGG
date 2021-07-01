@@ -9,7 +9,7 @@ from src.domain_logic.blog_domain import BlogDomain
 from src.domain_logic.engagement_domain import EngagementDomain
 from src.usecases.insert.insert_user import insert_user
 from src.usecases.insert.insert_blog import insert_blog
-from src.usecases.insert.insert_engagement import insertEngagement
+from src.usecases.insert.insert_engagement import insert_engagement
 from src.model.engagement import Engagement
 
 
@@ -23,7 +23,7 @@ class InsertEngament(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        await insert_user(userDomain=user_domain, func=get_test_database_session)
+        await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
 
         # create blog
         # user id will always be 1
@@ -33,12 +33,12 @@ class InsertEngament(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blogDomain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
 
         engagement_data = {"blog_id": 1, "user_id": 1, "isLiked": True}
         engagement_domain = EngagementDomain(**engagement_data)
-        await insertEngagement(engagementDomain=engagement_domain,
-                               func=get_test_database_session)
+        await insert_engagement(engagement_domain=engagement_domain,
+                                db_session_getter=get_test_database_session)
 
         query = select(Engagement).filter(Engagement.id == 1)
         session = get_test_database_session()

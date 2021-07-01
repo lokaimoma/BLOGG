@@ -12,7 +12,7 @@ class Engagement(SQLAlchemyBase):
     isLiked: bool = sa.Column(sa.Boolean)
     blog = relationship("Blog", back_populates="engagements")
 
-    def __init__(self, engagementDomain: EngagementDomain):
-        self.blog_id = engagementDomain.blog_id
-        self.user_id = engagementDomain.user_id
-        self.isLiked = engagementDomain.isLiked
+    def __init__(self, engagement_domain: EngagementDomain):
+        self.blog_id = engagement_domain.blog_id
+        self.user_id = engagement_domain.user_id
+        self.isLiked = engagement_domain.isLiked

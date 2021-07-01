@@ -1,11 +1,10 @@
 import os
 from typing import Optional
-import sqlalchemy as sa
-from sqlalchemy.ext.asyncio import create_async_engine
+
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
-
 
 SQLAlchemyBase = declarative_base()
 __session_factory: Optional[sessionmaker] = None

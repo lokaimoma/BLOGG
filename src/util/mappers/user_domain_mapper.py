@@ -1,8 +1,8 @@
 from src.domain_logic.user_domain import UserDomain
 
 
-def map_UserDomain_to_UserBaseModel(userDomain: UserDomain) -> dict:
+def map_user_domain_to_user_base_model(user_domain: UserDomain) -> dict:
     return {
-        "username": userDomain.username,
-        "email": userDomain.email
+        "username": user_domain.username,
+        "email": user_domain.email
     }
