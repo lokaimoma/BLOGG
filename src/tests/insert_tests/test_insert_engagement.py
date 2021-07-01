@@ -37,7 +37,8 @@ class InsertEngament(unittest.TestCase):
 
         engagement_data = {"blog_id": 1, "user_id": 1, "isLiked": True}
         engagement_domain = EngagementDomain(**engagement_data)
-        await insertEngagement(engagementDomain=engagement_domain, func=get_test_database_session)
+        await insertEngagement(engagementDomain=engagement_domain,
+                               func=get_test_database_session)
 
         query = select(Engagement).filter(Engagement.id == 1)
         session = get_test_database_session()

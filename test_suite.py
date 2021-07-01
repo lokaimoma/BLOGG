@@ -1,5 +1,6 @@
 import unittest
 
+from src.tests.getters_test.test_get_blog_detail import GetBlogDetailTestCase
 from src.tests.getters_test.test_get_blogs_user_id import GetBlogsByUserIdTestCase
 from src.tests.insert_tests.test_insert_user import InsertUser
 from src.tests.insert_tests.test_insert_blog import InsertBlog
@@ -13,7 +14,8 @@ suite3 = unittest.TestLoader().loadTestsFromTestCase(InsertEngament)
 suite4 = unittest.TestLoader().loadTestsFromTestCase(UpdateBlogTestCase)
 suite5 = unittest.TestLoader().loadTestsFromTestCase(UpdateEngagementTestCase)
 suite6 = unittest.TestLoader().loadTestsFromTestCase(GetBlogsByUserIdTestCase)
-suite_set = unittest.TestSuite(tests=[suite1, suite2, suite3, suite4, suite5, suite6])
+suite7 = unittest.TestLoader().loadTestsFromTestCase(GetBlogDetailTestCase)
+suite_set = unittest.TestSuite(tests=[suite1, suite2, suite3, suite4, suite5, suite6, suite7])
 
 if __name__ == "__main__":
     unittest.TextTestRunner(verbosity=2).run(suite_set)
