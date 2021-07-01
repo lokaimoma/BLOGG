@@ -11,3 +11,6 @@ class BlogDomainDetail(BaseModel):
     likes_count: int
     dislikes_count: int
 
+    def to_dict(self):
+        return self.__dict__
+
