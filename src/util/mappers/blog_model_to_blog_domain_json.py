@@ -9,7 +9,7 @@ async def __map_blog_model_to_blog_domain(blog_model: Blog) -> BlogDomain:
     blog_domain_data = {
         "title": blog_model.title,
         "body": blog_model.body,
-        "created_date": blog_model.created_data,
+        "created_date": blog_model.created_date,
         "last_updated": blog_model.last_updated,
         "user_id": blog_model.user_id
     }
