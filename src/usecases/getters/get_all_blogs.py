@@ -11,5 +11,5 @@ async def get_all_blogs(func: Callable[[], AsyncSession] = get_database_session)
     query = select(Blog).order_by(Blog.last_updated)
     async with func() as session:
         result = await session.execute(query)
-        blog_list = result.scalars()
+        blog_list = result.scalars().all()
         return blog_list

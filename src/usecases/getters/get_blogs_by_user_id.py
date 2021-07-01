@@ -13,4 +13,4 @@ async def get_blogs_by_user_id(user_id: int,
     query = select(Blog).filter(Blog.user_id == user_id)
     async with func() as session:
         result = await session.execute(query)
-        return result.all()
+        return result.scalars().all()
