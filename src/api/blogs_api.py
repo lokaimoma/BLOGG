@@ -1,3 +1,5 @@
+from typing import List
+
 from . import prefix
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
@@ -5,7 +7,9 @@ import starlette.status as StatusCode
 from src.domain_logic.blog_domain import BlogDomain
 from src.usecases.insert.insert_blog import insert_blog
 from src.util.mappers.blog_domain_to_json import blog_domain_json as convertor
+from ..usecases.getters.get_blogs_by_user_id import get_blogs_by_user_id
 from ..usecases.update.update_blog import update_blog
+from ..util.mappers.blog_model_to_blog_domain_json import blog_model_list_to_blog_domain_json
 
 blog_router = APIRouter(prefix=f"{prefix}/blog", tags=["blogs"])
 
@@ -17,10 +21,17 @@ async def insert(blogInfo: BlogDomain):
     return JSONResponse(content=convertor(blogDomain=blogInfo), media_type="application/json")
 
 
-@blog_router.post(path="/update/{blog_id}", response_model=BlogDomain, status_code=StatusCode.HTTP_201_CREATED)
+@blog_router.post(path="/update/{blog_id}", response_model=BlogDomain,
+                  status_code=StatusCode.HTTP_201_CREATED)
 async def update(blog_id: int, blog_info: BlogDomain):
     await update_blog(blog_id=blog_id, blog_info=blog_info)
-    return JSONResponse(content=convertor(blogDomain=blog_info), media_type="application/json")
+    return JSONResponse(content=convertor(blogDomain=blog_info),
+                        media_type="application/json")
 
 
-#@blog_router.get()
+@blog_router.get(path="/{user_id}", response_model=List[BlogDomain],
+                 status_code=StatusCode.HTTP_200_OK)
+async def get_user_blogs(user_id: int):
+    blog_list = await get_blogs_by_user_id(user_id=user_id)
+    data = await blog_model_list_to_blog_domain_json(blog_list=blog_list)
+    return JSONResponse(content=data, media_type="application/json")
