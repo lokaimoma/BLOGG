@@ -20,7 +20,7 @@ class InsertUser(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
         self.assertTrue(result)
         await drop_all_tables()
 
@@ -32,7 +32,7 @@ class InsertUser(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
 
         user_data = {"username": "Sam",
                      "email": "mako@mako_mail.com",
@@ -40,7 +40,7 @@ class InsertUser(unittest.TestCase):
                      }
 
         user_domain = UserDomain(**user_data)
-        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
         self.assertFalse(result)
         await drop_all_tables()
 
@@ -52,7 +52,7 @@ class InsertUser(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
 
         user_data = {"username": "Mako",
                      "email": "mako@mako_mail1.com",
@@ -60,7 +60,7 @@ class InsertUser(unittest.TestCase):
                      }
 
         user_domain = UserDomain(**user_data)
-        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
         self.assertFalse(result)
         await drop_all_tables()
 
@@ -72,7 +72,7 @@ class InsertUser(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
 
         user_data = {"username": "Mako",
                      "email": "mako@mako_mail.com",
@@ -80,7 +80,7 @@ class InsertUser(unittest.TestCase):
                      }
 
         user_domain = UserDomain(**user_data)
-        result = await insert_user(userDomain=user_domain, func=get_test_database_session)
+        result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
         self.assertFalse(result)
         await drop_all_tables()
 

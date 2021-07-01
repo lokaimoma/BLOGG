@@ -22,7 +22,7 @@ class InsertBlog(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        await insert_user(userDomain=user_domain, func=get_test_database_session)
+        await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
 
         # create blog
         # user id will always be 1
@@ -32,7 +32,7 @@ class InsertBlog(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blogDomain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
 
         query = select(Blog).filter(Blog.id == 1)
         session = get_test_database_session()

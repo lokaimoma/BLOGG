@@ -17,9 +17,9 @@ class Blog(SQLAlchemyBase):
     engagements: list = relationship(
         "Engagement", back_populates="blog", cascade="all, delete-orphan")
 
-    def __init__(self, blogDomain: BlogDomain):
-        self.title = blogDomain.title
-        self.body = blogDomain.body
-        self.created_date = blogDomain.created_date
-        self.last_updated = blogDomain.last_updated
-        self.user_id = blogDomain.user_id
+    def __init__(self, blog_domain: BlogDomain):
+        self.title = blog_domain.title
+        self.body = blog_domain.body
+        self.created_date = blog_domain.created_date
+        self.last_updated = blog_domain.last_updated
+        self.user_id = blog_domain.user_id

@@ -18,7 +18,7 @@ async def __map_blog_model_to_blog_domain(blog_model: Blog) -> BlogDomain:
 
 async def blog_model_to_blog_domain_json(blog_model: Blog) -> str:
     result = await __map_blog_model_to_blog_domain(blog_model=blog_model)
-    return blog_domain_json(blogDomain=result)
+    return blog_domain_json(blog_domain=result)
 
 
 async def blog_model_list_to_blog_domain_json(blog_list: List[Blog]) -> List[str]:

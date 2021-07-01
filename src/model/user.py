@@ -15,7 +15,7 @@ class User(SQLAlchemyBase):
     blogs: list = relationship(
         "Blog", back_populates="user", cascade="all, delete-orphan")
 
-    def __init__(self, userDomain: UserDomain):
-        self.username = userDomain.username
-        self.email = userDomain.email
-        self.password = hash_password(password=userDomain.password)
+    def __init__(self, user_domain: UserDomain):
+        self.username = user_domain.username
+        self.email = user_domain.email
+        self.password = hash_password(password=user_domain.password)

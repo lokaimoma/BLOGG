@@ -22,7 +22,7 @@ class UpdateBlogTestCase(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        await insert_user(userDomain=user_domain, func=get_test_database_session)
+        await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
 
         blog_data = {
             "title": "Async capabilities",
@@ -30,7 +30,7 @@ class UpdateBlogTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blogDomain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
 
         updated_blog = {"title": "Wonders of async",
                         "body": "Scalablilty is a main factor for embracing "

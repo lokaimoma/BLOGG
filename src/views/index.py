@@ -1,7 +1,5 @@
 from fastapi import APIRouter
 from fastapi import responses
-from fastapi.staticfiles import StaticFiles
-
 
 router = APIRouter()
 

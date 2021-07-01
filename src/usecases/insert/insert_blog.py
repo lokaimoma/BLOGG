@@ -5,8 +5,9 @@ from src.domain_logic.blog_domain import BlogDomain
 from src.model.blog import Blog
 
 
-async def insert_blog(blogDomain: BlogDomain, func: Callable[[], AsyncSession] = get_database_session):
-    blog = Blog(blogDomain=blogDomain)
+async def insert_blog(blog_domain: BlogDomain,
+                      func: Callable[[], AsyncSession] = get_database_session):
+    blog = Blog(blog_domain=blog_domain)
     async with func() as session:
         session.add(blog)
         await session.commit()

@@ -8,7 +8,7 @@ from src.domain_logic.user_domain import UserDomain
 from src.model.engagement import Engagement
 from src.tests import create_all_tables, drop_all_tables, get_test_database_session
 from src.usecases.insert.insert_blog import insert_blog
-from src.usecases.insert.insert_engagement import insertEngagement
+from src.usecases.insert.insert_engagement import insert_engagement
 from src.usecases.insert.insert_user import insert_user
 from src.usecases.update.update_engagement import update_engagement
 
@@ -24,7 +24,7 @@ class UpdateEngagementTestCase(unittest.TestCase):
                      "password": "Zu(|<erBerG"
                      }
         user_domain = UserDomain(**user_data)
-        await insert_user(userDomain=user_domain, func=get_test_database_session)
+        await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
 
         blog_data = {
             "title": "Async capabilities",
@@ -32,11 +32,11 @@ class UpdateEngagementTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blogDomain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
 
         engagement_data = {"blog_id": 1, "user_id": 1, "isLiked": True}
         engagement_domain = EngagementDomain(**engagement_data)
-        await insertEngagement(engagementDomain=engagement_domain, func=get_test_database_session)
+        await insert_engagement(engagement_domain=engagement_domain, db_session_getter=get_test_database_session)
 
         updated_engagement_data = {"blog_id": 1, "user_id": 1}
         updated_engagement_domain = EngagementDomain(**updated_engagement_data)
