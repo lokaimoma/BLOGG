@@ -34,7 +34,7 @@ async def insert(blog_info: BlogDomain):
                   status_code=status_code.HTTP_201_CREATED)
 async def update(blog_id: int, blog_info: BlogDomain):
     await update_blog(blog_id=blog_id, blog_info=blog_info)
-    return Response(content=blog_info.to_dict(),
+    return JSONResponse(content=blog_info.to_dict(),
                     media_type="application/json")
 
 
