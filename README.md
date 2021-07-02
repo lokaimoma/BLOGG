@@ -98,6 +98,15 @@ is how you do it.
             ```
             $ENV:DATABASE_URL = 'sqlite+aiosqlite:///db_dev.sqlite'
             ```
++ #### Change directory to project root
+  + ##### Linux and MAC OS
+  ```
+  cd ..\..
+  ```
+  + ##### Windows
+  ```
+  cd ../..
+  ```
 + ##### Deactivate the environment with the command below.
 ```
 deactivate
