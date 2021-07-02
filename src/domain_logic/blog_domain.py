@@ -11,4 +11,10 @@ class BlogDomain(BaseModel):
     user_id: int
 
     def to_dict(self):
-        return self.__dict__
+        return {
+            "title": self.title,
+            "body": self.body,
+            "created_date": self.created_date.__str__(),
+            "last_update": self.last_updated.__str__(),
+            "user_id": self.user_id
+        }
