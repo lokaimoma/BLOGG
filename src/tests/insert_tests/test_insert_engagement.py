@@ -50,3 +50,16 @@ class InsertEngament(unittest.TestCase):
         self.assertTrue(engament.isLiked)
 
         await drop_all_tables()
+
+    @async_test
+    async def test_insert_engagement_no_blog_no_user(self):
+        await create_all_tables()
+
+        engagement_data = {"blog_id": 1, "user_id": 1, "isLiked": True}
+        engagement_domain = EngagementDomain(**engagement_data)
+        result = await insert_engagement(engagement_domain=engagement_domain,
+                                         db_session_getter=get_test_database_session)
+
+        self.assertFalse(result)
+
+        await drop_all_tables()
