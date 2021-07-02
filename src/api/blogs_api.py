@@ -2,7 +2,6 @@ from typing import List, Optional
 
 import starlette.status as status_code
 from fastapi import APIRouter
-from fastapi.responses import Response
 from starlette.responses import JSONResponse
 
 from src.domain_logic.blog_domain import BlogDomain
