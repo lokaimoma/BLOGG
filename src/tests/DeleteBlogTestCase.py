@@ -8,6 +8,7 @@ from src.domain_logic.user_domain import UserDomain
 from src.model.blog import Blog
 from src.model.engagement import Engagement
 from src.tests import create_all_tables, drop_all_tables, get_test_database_session
+from src.usecases.delete_blog import delete_blog
 from src.usecases.insert.insert_blog import insert_blog
 from src.usecases.insert.insert_engagement import insert_engagement
 from src.usecases.insert.insert_user import insert_user
@@ -39,6 +40,19 @@ class DeleteBlogTestCase(unittest.TestCase):
         await insert_engagement(engagement_domain=engagement_domain,
                                 db_session_getter=get_test_database_session)
 
+        await delete_blog(blog_id=1, func=get_test_database_session)
 
+        blog_query = select(Blog).filter(Blog.id == 1)
+        engagement_query = select(Engagement).filter(Engagement.id == 1)
+
+        async with get_test_database_session() as session:
+            blog_result = await session.execute(blog_query)
+            engagement_result = await session.execute(engagement_query)
+
+            blog = blog_result.scalar_one_or_none()
+            engagement = engagement_result.scalar_one_or_none()
+
+        self.assertIsNone(blog)
+        self.assertIsNone(engagement)
 
         await drop_all_tables()
