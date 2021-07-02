@@ -52,11 +52,11 @@ cd BLOGG
 ```bash
 pip install -r requirements.txt
 ```
-+ Set an environmental variable pointing to you database url (KEY = DATABASE_URL)
++ Set an environmental variable pointing to you database url (KEY = DATABASE_URL). Check DOCS director for how to set the variable.
  ```
  FORMAT: DATABASE_URL=sqlite+aiosqlite:///db-dev.sqlite
  ```
- A detail doc will be created showing the format for different databases.
+ Check DOCS directory for other database url formats and requirements.
 + ##### Deactivate the environment with the command below.
 ```
 deactivate
