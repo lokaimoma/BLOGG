@@ -3,11 +3,13 @@ from typing import Callable
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.model import get_database_session
 from src.model.user import User
 from src.util.security.password_util import verify_password_hash
 
 
-async def login_user(email: str, password: str, func: Callable[[], AsyncSession]):
+async def login_user(email: str, password: str,
+                     func: Callable[[], AsyncSession] = get_database_session):
     query = select(User).filter(User.email == email)
     async with func() as session:
         result = session.execute(query)
