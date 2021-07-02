@@ -52,61 +52,11 @@ cd BLOGG
 ```bash
 pip install -r requirements.txt
 ```
-+ We will now set our environmental variable for the database url.
-I prefer setting it in the python virtual environment we created. Below
-is how you do it.
-    + ##### Linux and Mac OS
-        + Change directory to venv/bin
-        ```bash
-        cd venv/bin
-        ```
-        + Open the file activate with your favorite editor
-        ```bash
-        nano activate
-        ```
-        + Add the following to the end of the file. You can
-        change the database url to your prefered database url.
-          Since there are relations between the models we used,
-          only SQL databases can be used with this project.
-          + SQLITE
-            ```bash
-            DATABASE_URL="sqlite+aiosqlite:///db-dev.sqlite"
-            export DATABASE_URL
-            ```
-          + URL style
-            ```
-            dialect+driver://username:password@host:port/database
-            ```
-            [Check this link for more details](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls)
-    + ##### Windows 
-        + Change directory to .\venv\Scripts
-        ```
-        cd .\venv\Scripts
-        ```
-        + Open the following files in your favourite editors
-        and add the following lines.
-            + activate
-            ```
-            DATABASE_URL="sqlite+aiosqlite:///db_dev.sqlite"
-            export DATABASE_URL
-            ```
-            + activate.bat
-            ```
-            set DATABASE_URL=sqlite+aiosqlite:///db_dev.sqlite
-            ```
-            + Activate.ps1
-            ```
-            $ENV:DATABASE_URL = 'sqlite+aiosqlite:///db_dev.sqlite'
-            ```
-+ #### Change directory to project root
-  + ##### Linux and MAC OS
-  ```
-  cd ..\..
-  ```
-  + ##### Windows
-  ```
-  cd ../..
-  ```
++ Set an environmental variable pointing to you database url (KEY = DATABASE_URL)
+ ```
+ FORMAT: DATABASE_URL=sqlite+aiosqlite:///db-dev.sqlite
+ ```
+ A detail doc will be created showing the format for different databases.
 + ##### Deactivate the environment with the command below.
 ```
 deactivate
