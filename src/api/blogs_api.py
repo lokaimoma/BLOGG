@@ -26,9 +26,16 @@ async def get_all():
 
 @blog_router.post(path="/insert", response_model=BlogDomain, status_code=status_code.HTTP_201_CREATED)
 async def insert(blog_info: BlogDomain):
-    await insert_blog(blog_domain=blog_info)
-
-    return JSONResponse(content=convertor(blog_domain=blog_info), media_type="application/json")
+    result = await insert_blog(blog_domain=blog_info)
+    if result:
+        return JSONResponse(content=convertor(blog_domain=blog_info),
+                            media_type="application/json")
+    error = {
+        "ERROR": f"No user with the id {blog_info.user_id} was found.",
+        "Status Code": status_code.HTTP_422_UNPROCESSABLE_ENTITY
+    }
+    return JSONResponse(content=error, media_type="application/json",
+                        status_code=status_code.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 @blog_router.post(path="/update/{blog_id}", response_model=BlogDomain,

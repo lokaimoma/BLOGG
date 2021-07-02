@@ -30,7 +30,7 @@ class GetBlogDetailTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, db_session=get_test_database_session)
 
         engagement_data = {"blog_id": 1, "user_id": 1, "isLiked": True}
         engagement_domain = EngagementDomain(**engagement_data)
@@ -61,7 +61,7 @@ class GetBlogDetailTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, db_session=get_test_database_session)
 
         engagement_data = {"blog_id": 1, "user_id": 1, "isLiked": True}
         engagement_domain = EngagementDomain(**engagement_data)
