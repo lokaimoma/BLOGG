@@ -30,7 +30,7 @@ class UpdateBlogTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, db_session=get_test_database_session)
 
         updated_blog = {"title": "Wonders of async",
                         "body": "Scalablilty is a main factor for embracing "

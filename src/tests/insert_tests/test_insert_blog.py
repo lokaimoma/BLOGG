@@ -32,7 +32,7 @@ class InsertBlog(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, db_session=get_test_database_session)
 
         query = select(Blog).filter(Blog.id == 1)
         session = get_test_database_session()
@@ -43,6 +43,21 @@ class InsertBlog(unittest.TestCase):
         self.assertIsNotNone(blog)
         self.assertEqual(blog.title, blog_data["title"])
         self.assertEqual(blog.body, blog_data["body"])
+        await drop_all_tables()
+
+    @async_test
+    async def test_insert_blog_no_user(self):
+        await create_all_tables()
+        blog_data = {
+            "title": "Async capabilities",
+            "body": "With async we can write apis that scale",
+            "user_id": 5
+        }
+        blog_domain = BlogDomain(**blog_data)
+        result = await insert_blog(blog_domain=blog_domain, db_session=get_test_database_session)
+
+        self.assertFalse(result)
+
         await drop_all_tables()
 
 

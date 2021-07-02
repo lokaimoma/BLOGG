@@ -28,7 +28,7 @@ class GeAllBlogsTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain = BlogDomain(**blog_data)
-        await insert_blog(blog_domain=blog_domain, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain, db_session=get_test_database_session)
 
         blog_data1 = {
             "title": "Python Language",
@@ -37,7 +37,7 @@ class GeAllBlogsTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain1 = BlogDomain(**blog_data1)
-        await insert_blog(blog_domain=blog_domain1, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain1, db_session=get_test_database_session)
 
         blog_data2 = {
             "title": "Python And Kotlin",
@@ -46,7 +46,7 @@ class GeAllBlogsTestCase(unittest.TestCase):
             "user_id": 1
         }
         blog_domain2 = BlogDomain(**blog_data2)
-        await insert_blog(blog_domain=blog_domain2, func=get_test_database_session)
+        await insert_blog(blog_domain=blog_domain2, db_session=get_test_database_session)
 
         result = await get_all_blogs(func=get_test_database_session)
 
