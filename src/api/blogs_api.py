@@ -55,7 +55,7 @@ async def get_user_blogs(user_id: int):
     return JSONResponse(content=blog_list_serialized)
 
 
-@blog_router.get(path="/{blog_id}", response_model=BlogDomainDetail,
+@blog_router.post(path="/{blog_id}", response_model=BlogDomainDetail,
                  status_code=status_code.HTTP_200_OK)
 async def blog_details(blog_id: int, current_user_id: Optional[int] = None):
     result = await get_blog_details(blog_id=blog_id,
