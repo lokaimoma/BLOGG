@@ -22,8 +22,8 @@ blog_router = APIRouter(prefix=f"{prefix}/blog", tags=["blogs"])
 @blog_router.get("/", response_model=List[BlogDomain], status_code=status_code.HTTP_200_OK)
 async def get_all():
     blog_list = await get_all_blogs()
-    blog_list_serialized = [blog.__dict__ for blog in blog_list]
-    return blo
+    blog_list_serialized = [blog.to_dict() for blog in blog_list]
+    return JSONResponse(content=blog_list_serialized)
 
 
 @blog_router.post(path="/insert", response_model=BlogDomain, status_code=status_code.HTTP_201_CREATED)

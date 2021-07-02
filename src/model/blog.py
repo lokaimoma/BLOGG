@@ -24,7 +24,7 @@ class Blog(SQLAlchemyBase):
         self.last_updated = blog_domain.last_updated
         self.user_id = blog_domain.user_id
 
-    def __dict__(self):
+    def to_dict(self):
         return {
             "title": self.title,
             "body": self.body,
