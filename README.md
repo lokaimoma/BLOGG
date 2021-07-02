@@ -46,7 +46,7 @@ cd BLOGG
         ```
     + ##### Linux and Mac OS
     ```bash
-    Source venv/bin/activate
+    source venv/bin/activate
     ```
 + #### Install all the requirements.
 ```bash
