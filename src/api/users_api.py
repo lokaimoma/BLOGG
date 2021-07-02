@@ -37,4 +37,4 @@ async def login(email: str, password: str):
     user_data = result.__dict__
     del user_data["password"]
     user = UserLogin(**user_data)
-    return JSONResponse(content=user)
+    return JSONResponse(content=user.__dict__)

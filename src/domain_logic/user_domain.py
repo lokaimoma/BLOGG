@@ -13,6 +13,6 @@ class User(BaseModel):
 
 
 class UserLogin(BaseModel):
-    user_id: int
+    id: int
     email: str
     username: str
