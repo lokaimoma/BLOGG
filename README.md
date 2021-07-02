@@ -15,27 +15,27 @@ make some modifications.
 
 ### How to install
 - - -
-+ Download and install python. 
++ #### Download and install python. 
   The versin should be greater than or equal to version 3.6
-+ Clone the project unto your pc.
++ #### Clone the project unto your pc.
 ```
 git clone https://github.com/lokaimoma/BLOGG.git
 ```
-+ Change directory to the project directory.
++ #### Change directory to the project directory.
 ```
 cd BLOGG
 ```
-+ Create a virtual environment.
-    + Windows
++ #### Create a virtual environment.
+    + ##### Windows
     ```
     python -m venv venv
     ```
-    + Linux and Mac OS
+    + ##### Linux and Mac OS
     ```bash
     python3 -m venv venv
     ```
-+ Activate the virtual environment.
-    + Windows
++ #### Activate the virtual environment.
+    + ##### Windows
         + cmd
         ```
         .\venv\Scripts\activate
@@ -44,18 +44,18 @@ cd BLOGG
         ```
         .\venv\Scripts\Activate.ps1
         ```
-    + Linux and Mac OS
+    + ##### Linux and Mac OS
     ```bash
     Source venv/bin/activate
     ```
-+ Install all the requirements.
++ #### Install all the requirements.
 ```bash
 pip install -r requirements.txt
 ```
-+ We will now set our environmental variable for the database url.
++ #### We will now set our environmental variable for the database url.
 I prefer setting it in the python virtual environment we created. Below
 is how you do it.
-    + Linux and Mac OS
+    + ##### Linux and Mac OS
         + Change directory to venv/bin
         ```bash
         cd venv/bin
@@ -78,7 +78,7 @@ is how you do it.
             dialect+driver://username:password@host:port/database
             ```
             [Check this link for more details](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls)
-    + Windows 
+    + ##### Windows 
         + Change directory to .\venv\Scripts
         ```
         cd .\venv\Scripts
@@ -98,26 +98,26 @@ is how you do it.
             ```
             $ENV:DATABASE_URL = 'sqlite+aiosqlite:///db_dev.sqlite'
             ```
-+ Deactivate the environment with the command below.
++ ##### Deactivate the environment with the command below.
 ```
 deactivate
 ```
-+ Reactivate the environment again. Check above for plateform
++ #### Reactivate the environment again. Check above for plateform
   specific steps.
-+ Run this command to create the database
++ #### Run this command to create the database
 ```
 alembic upgrade head
 ```
-+ You can now run the program with the command below.
-    + Windows
++ #### You can now run the program with the command below.
+    + ##### Windows
     ```
     python engine.py
     ```
-    + Linux and Mac OS
+    + ##### Linux and Mac OS
     ```
     python3 engine.py
     ```
- + By default the app runs on [localhost:8000](#)
+ + #### By default the app runs on [localhost:8000](#)
 
 ### Documentation
 - - -
