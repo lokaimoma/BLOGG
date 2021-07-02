@@ -23,3 +23,12 @@ class Blog(SQLAlchemyBase):
         self.created_date = blog_domain.created_date
         self.last_updated = blog_domain.last_updated
         self.user_id = blog_domain.user_id
+
+    def to_dict(self):
+        return {
+            "title": self.title,
+            "body": self.body,
+            "created_date": self.created_date.__str__(),
+            "last_updated": self.last_updated.__str__(),
+            "user_id": self.user_id
+        }
