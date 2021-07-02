@@ -15,7 +15,7 @@ class Blog(SQLAlchemyBase):
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
     user = relationship("User", back_populates="blogs")
     engagements: list = relationship(
-        "Engagement", back_populates="blog", cascade="all, delete-orphan")
+        "Engagement", back_populates="blog", cascade="all, delete")
 
     def __init__(self, blog_domain: BlogDomain):
         self.title = blog_domain.title

@@ -13,7 +13,7 @@ class User(SQLAlchemyBase):
     email: str = sa.Column(sa.String, unique=True, index=True, nullable=False)
     password: str = sa.Column(sa.String, nullable=False)
     blogs: list = relationship(
-        "Blog", back_populates="user", cascade="all, delete-orphan")
+        "Blog", back_populates="user", cascade="all, delete")
 
     def __init__(self, user_domain: UserDomain):
         self.username = user_domain.username
