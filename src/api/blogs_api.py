@@ -17,13 +17,6 @@ from ..usecases.update.update_blog import update_blog
 blog_router = APIRouter(prefix=f"{prefix}/blog", tags=["blogs"])
 
 
-@blog_router.get("/", response_model=List[BlogDomain], status_code=status_code.HTTP_200_OK)
-async def get_all():
-    blog_list = await get_all_blogs()
-    blog_list_serialized = [blog.to_dict() for blog in blog_list]
-    return JSONResponse(content=blog_list_serialized)
-
-
 @blog_router.post(path="/insert", response_model=BlogDomain, status_code=status_code.HTTP_201_CREATED)
 async def insert(blog_info: BlogDomain):
     result = await insert_blog(blog_domain=blog_info)
@@ -43,6 +36,13 @@ async def update(blog_id: int, blog_info: BlogDomain):
     await update_blog(blog_id=blog_id, blog_info=blog_info)
     return Response(content=blog_info.to_dict(),
                     media_type="application/json")
+
+
+@blog_router.get("/", response_model=List[BlogDomain], status_code=status_code.HTTP_200_OK)
+async def get_all():
+    blog_list = await get_all_blogs()
+    blog_list_serialized = [blog.to_dict() for blog in blog_list]
+    return JSONResponse(content=blog_list_serialized)
 
 
 @blog_router.get(path="/user_blogs/{user_id}", response_model=List[BlogDomain],
