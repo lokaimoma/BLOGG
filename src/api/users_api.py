@@ -23,3 +23,5 @@ async def register(user_info: UserDomain):
         "status code": status_code.HTTP_409_CONFLICT
     }
     return JSONResponse(content=error, status_code=status_code.HTTP_409_CONFLICT, media_type="application/json")
+
+@user_router.post(path="/login", )

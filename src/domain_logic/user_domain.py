@@ -10,3 +10,9 @@ class UserDomain(BaseModel):
 class User(BaseModel):
     username: str
     email: str
+
+
+class UserLogin(BaseModel):
+    user_id: int
+    email: str
+    username: str
