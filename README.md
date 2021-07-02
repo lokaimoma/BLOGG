@@ -50,7 +50,7 @@ cd BLOGG
     ```
 + Install all the requirements.
 ```bash
-pip install -r .requirements.txt
+pip install -r requirements.txt
 ```
 + We will now set our environmental variable for the database url.
 I prefer setting it in the python virtual environment we created. Below
