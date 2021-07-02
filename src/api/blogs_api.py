@@ -30,8 +30,7 @@ async def get_all():
 async def insert(blog_info: BlogDomain):
     result = await insert_blog(blog_domain=blog_info)
     if result:
-        return Response(content=convertor(blog_domain=blog_info),
-                        media_type="application/json")
+        return JSONResponse(content=blog_info.to_dict())
     error = {
         "ERROR": f"No user with the id {blog_info.user_id} was found.",
         "Status Code": status_code.HTTP_422_UNPROCESSABLE_ENTITY
