@@ -12,7 +12,7 @@ async def login_user(email: str, password: str,
                      func: Callable[[], AsyncSession] = get_database_session):
     query = select(User).filter(User.email == email)
     async with func() as session:
-        result = session.execute(query)
+        result = await session.execute(query)
         user = result.scalar_one_or_none()
         if not user:
             return False
