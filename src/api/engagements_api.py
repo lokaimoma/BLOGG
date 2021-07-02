@@ -27,5 +27,12 @@ async def insert(engagement: EngagementDomain):
 
 @engagement_router.post(path="/update", response_model=EngagementDomain, status_code=status_code.HTTP_201_CREATED)
 async def update(engagement: EngagementDomain):
-    await update_engagement(engagement_domain=engagement)
-    return JSONResponse(content=engagement.__dict__, media_type="application/json")
+    result = await update_engagement(engagement_domain=engagement)
+    if result:
+        return JSONResponse(content=engagement.__dict__, media_type="application/json")
+
+    error = {
+        "ERROR": f"No engagement was found"
+    }
+    return JSONResponse(content=error, media_type="applicatoin/json",
+                        status_code=status_code.HTTP_422_UNPROCESSABLE_ENTITY)
