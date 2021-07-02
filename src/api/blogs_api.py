@@ -61,7 +61,6 @@ async def blog_details(blog_id: int, current_user_id: Optional[int] = None):
     result = await get_blog_details(blog_id=blog_id,
                                     current_user_id=current_user_id)
     if result:
-        return Response(content=convertor(blog_domain=result),
-                        media_type="application/json")
+        return JSONResponse(content=result.to_dict())
 
     return JSONResponse(content="")
