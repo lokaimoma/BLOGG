@@ -19,38 +19,38 @@ make some modifications.
   The versin should be greater than or equal to version 3.6
 + Clone the project unto your pc.
 ```
-    git clone https://github.com/lokaimoma/BLOGG.git
+git clone https://github.com/lokaimoma/BLOGG.git
 ```
 + Change directory to the project directory.
 ```
-    cd BLOGG
+cd BLOGG
 ```
 + Create a virtual environment.
     + Windows
     ```
-        python -m venv venv
+    python -m venv venv
     ```
     + Linux and Mac OS
     ```bash
-        python3 -m venv venv
+    python3 -m venv venv
     ```
 + Activate the virtual environment.
     + Windows
         + cmd
         ```
-            .\venv\Scripts\activate
+        .\venv\Scripts\activate
         ```
         + powershell
         ```
-            .\venv\Scripts\Activate.ps1
+        .\venv\Scripts\Activate.ps1
         ```
     + Linux and Mac OS
     ```bash
-        Source venv/bin/activate
+    Source venv/bin/activate
     ```
 + Install all the requirements.
 ```bash
-    pip install -r .requirements.txt
+pip install -r .requirements.txt
 ```
 + We will now set our environmental variable for the database url.
 I prefer setting it in the python virtual environment we created. Below
@@ -58,11 +58,11 @@ is how you do it.
     + Linux and Mac OS
         + Change directory to venv/bin
         ```bash
-            cd venv/bin
+        cd venv/bin
         ```
         + Open the file activate with your favorite editor
         ```bash
-            nano activate
+        nano activate
         ```
         + Add the following to the end of the file. You can
         change the database url to your prefered database url.
@@ -70,37 +70,37 @@ is how you do it.
           only SQL databases can be used with this project.
           + SQLITE
             ```bash
-              DATABASE_URL="sqlite+aiosqlite:///db-dev.sqlite"
-              export DATABASE_URL
+            DATABASE_URL="sqlite+aiosqlite:///db-dev.sqlite"
+            export DATABASE_URL
             ```
           + URL style
             ```
-                dialect+driver://username:password@host:port/database
+            dialect+driver://username:password@host:port/database
             ```
             [Check this link for more details](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls)
     + Windows 
         + Change directory to .\venv\Scripts
         ```
-            cd .\venv\Scripts
+        cd .\venv\Scripts
         ```
         + Open the following files in your favourite editors
         and add the following lines.
             + activate
             ```
-                DATABASE_URL="sqlite+aiosqlite:///db_dev.sqlite"
-                export DATABASE_URL
+            DATABASE_URL="sqlite+aiosqlite:///db_dev.sqlite"
+            export DATABASE_URL
             ```
             + activate.bat
             ```
-                set DATABASE_URL=sqlite+aiosqlite:///db_dev.sqlite
+            set DATABASE_URL=sqlite+aiosqlite:///db_dev.sqlite
             ```
             + Activate.ps1
             ```
-                $ENV:DATABASE_URL = 'sqlite+aiosqlite:///db_dev.sqlite'
+            $ENV:DATABASE_URL = 'sqlite+aiosqlite:///db_dev.sqlite'
             ```
 + Deactivate the environment with the command below.
 ```
-    deactivate
+deactivate
 ```
 + Reactivate the environment again. Check above for plateform
   specific steps.
@@ -111,11 +111,11 @@ alembic upgrade head
 + You can now run the program with the command below.
     + Windows
     ```
-        python engine.py
+    python engine.py
     ```
     + Linux and Mac OS
     ```
-        python3 engine.py
+    python3 engine.py
     ```
  + By default the app runs on [localhost:8000](#)
 
