@@ -21,7 +21,7 @@ async def insert(engagement: EngagementDomain):
     error = {
         "ERROR": f"The blog with id {engagement.blog_id} was not found"
     }
-    return JSONResponse(content=error, media_type="applicatoin/json",
+    return JSONResponse(content=error, media_type="application/json",
                         status_code=status_code.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
