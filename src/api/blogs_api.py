@@ -43,7 +43,7 @@ async def insert(blog_info: BlogDomain):
                   status_code=status_code.HTTP_201_CREATED)
 async def update(blog_id: int, blog_info: BlogDomain):
     await update_blog(blog_id=blog_id, blog_info=blog_info)
-    return Response(content=convertor(blog_domain=blog_info),
+    return Response(content=blog_info.to_dict(),
                     media_type="application/json")
 
 
@@ -51,8 +51,8 @@ async def update(blog_id: int, blog_info: BlogDomain):
                  status_code=status_code.HTTP_200_OK)
 async def get_user_blogs(user_id: int):
     blog_list = await get_blogs_by_user_id(user_id=user_id)
-    data = await blog_model_list_to_blog_domain_json(blog_list=blog_list)
-    return Response(content=data, media_type="application/json")
+    blog_list_serialized = [blog.to_dict() for blog in blog_list]
+    return JSONResponse(content=blog_list_serialized)
 
 
 @blog_router.get(path="/{blog_id}", response_model=BlogDomainDetail,
@@ -61,7 +61,6 @@ async def blog_details(blog_id: int, current_user_id: Optional[int] = None):
     result = await get_blog_details(blog_id=blog_id,
                                     current_user_id=current_user_id)
     if result:
-        return Response(content=convertor(blog_domain=result),
-                        media_type="application/json")
+        return JSONResponse(content=result.to_dict())
 
     return JSONResponse(content="")
