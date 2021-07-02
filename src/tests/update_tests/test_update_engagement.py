@@ -54,6 +54,20 @@ class UpdateEngagementTestCase(unittest.TestCase):
 
         await drop_all_tables()
 
+    @async_test
+    async def test_update_engagement_with_no_engagement(self):
+        await create_all_tables()
+
+        updated_engagement_data = {"blog_id": 1, "user_id": 1}
+        updated_engagement_domain = EngagementDomain(**updated_engagement_data)
+
+        result = await update_engagement(engagement_domain=updated_engagement_domain,
+                                         func=get_test_database_session)
+
+        self.assertFalse(result)
+
+        await drop_all_tables()
+
 
 if __name__ == '__main__':
     unittest.main()
