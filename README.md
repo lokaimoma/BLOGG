@@ -56,7 +56,7 @@ pip install -r requirements.txt
  ```
  FORMAT: DATABASE_URL=sqlite+aiosqlite:///db-dev.sqlite
  ```
- Check DOCS directory for other database url formats and requirements.
+ Read this [file](doc/DATABASE_FORMAT.md) for other database formats and requirements to install.
 + ##### Deactivate the environment with the command below.
 ```
 deactivate
