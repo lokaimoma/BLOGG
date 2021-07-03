@@ -1,6 +1,12 @@
 from typing import Optional
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+
+origins = [
+    "http://localhost",
+    "http://localhost:8080"
+]
 
 __app: Optional[FastAPI] = None
 
@@ -35,5 +41,13 @@ def create_app() -> FastAPI:
         __app.include_router(router=user_router)
         __app.include_router(router=blog_router)
         __app.include_router(router=engagement_router)
+
+        __app.add_middleware(
+            middleware_class=CORSMiddleware,
+            allow_origins=origins,
+            allow_origin_regex="http://localhost:*",
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
 
     return __app
