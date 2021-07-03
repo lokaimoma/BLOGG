@@ -33,7 +33,7 @@ DATABASE_URL=sqlite+aiosqlite:///database_name.sqlite
 DATABASE_URL=mysql+aiomysql://username:password@host:port/database_name
 ```
 **aiomysql**: Async driver for MySQL   
-Install with the command below.   
+How to install  
 **Assuming virtual environment is activated.**
 ```
 pip install aiomysql
@@ -45,7 +45,8 @@ pip install aiomysql
 DATABASE_URL=postgresql+asyncpg://username:password@host:port/database_name
 ```
 **asyncpg**: Async Database driver for PostgreSQL   
-How to install
+How to install  
+**Assuming virtual environment is activated.**
 ```
 pip install asyncpg
 ```
@@ -56,7 +57,8 @@ pip install asyncpg
 DATABASE_URL=oracle+cx_Oracle_async://username:password@database_name
 ```
 **cx_Oracle_async**: Async Databse driver for Oracle   
-How to install
+How to install  
+**Assuming virtual environment is activated.**
 ```
 pip install cx-Oracle-async
 ```
