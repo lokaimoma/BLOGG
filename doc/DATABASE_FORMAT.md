@@ -1,3 +1,4 @@
+![BLOGG logo](../assets/blog_logo.png)
 ## General database URL format
 - - -
 In this project the database operations are done
@@ -41,7 +42,7 @@ pip install aiomysql
 ## PostgreSQL
 - - -
 ```
-postgresql+asyncpg://username:password@host:port/database_name
+DATABASE_URL=postgresql+asyncpg://username:password@host:port/database_name
 ```
 **asyncpg**: Async Database driver for PostgreSQL   
 How to install
@@ -52,7 +53,7 @@ pip install asyncpg
 ## Oracle
 - - -
 ```
-oracle+cx_Oracle_async://username:password@database_name
+DATABASE_URL=oracle+cx_Oracle_async://username:password@database_name
 ```
 **cx_Oracle_async**: Async Databse driver for Oracle   
 How to install
