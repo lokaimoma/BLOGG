@@ -8,6 +8,7 @@ from src.domain_logic.blog_domain import BlogDomain
 from src.usecases.insert.insert_blog import insert_blog
 from . import prefix
 from ..domain_logic.blog_domain_detailed import BlogDomainDetail
+from ..usecases.delete_blog import delete_blog
 from ..usecases.getters.get_all_blogs import get_all_blogs
 from ..usecases.getters.get_blog_details import get_blog_details
 from ..usecases.getters.get_blogs_by_user_id import get_blogs_by_user_id
@@ -61,3 +62,14 @@ async def blog_details(blog_id: int, current_user_id: Optional[int] = None):
         return JSONResponse(content=result.to_dict())
 
     return JSONResponse(content="")
+
+
+@blog_router.delete(path="/delete/{blog_id}", status_code=status_code.HTTP_200_OK)
+async def delete(blog_id: int):
+    await delete_blog(blog_id=blog_id)
+
+    info = {
+        "INFO": "Bog deleted Successfully"
+    }
+
+    return JSONResponse(content=info)
