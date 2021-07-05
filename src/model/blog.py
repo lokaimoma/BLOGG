@@ -26,6 +26,7 @@ class Blog(SQLAlchemyBase):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "title": self.title,
             "body": self.body,
             "created_date": self.created_date.__str__(),
