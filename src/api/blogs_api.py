@@ -17,11 +17,13 @@ from ..usecases.update.update_blog import update_blog
 blog_router = APIRouter(prefix=f"{prefix}/blog", tags=["blogs"])
 
 
-@blog_router.post(path="/insert", response_model=BlogDomain, status_code=status_code.HTTP_201_CREATED)
+@blog_router.post(path="/insert", response_model=BlogDomain,
+                  status_code=status_code.HTTP_201_CREATED)
 async def insert(blog_info: BlogDomain):
     result = await insert_blog(blog_domain=blog_info)
     if result:
-        return JSONResponse(content=blog_info.to_dict())
+        return JSONResponse(content=blog_info.to_dict(),
+                            status_code=status_code.HTTP_201_CREATED)
     error = {
         "ERROR": f"No user with the id {blog_info.user_id} was found.",
         "Status Code": status_code.HTTP_422_UNPROCESSABLE_ENTITY
@@ -35,7 +37,8 @@ async def insert(blog_info: BlogDomain):
 async def update(blog_id: int, blog_info: BlogDomain):
     await update_blog(blog_id=blog_id, blog_info=blog_info)
     return JSONResponse(content=blog_info.to_dict(),
-                        media_type="application/json")
+                        media_type="application/json",
+                        status_code=status_code.HTTP_201_CREATED)
 
 
 @blog_router.get("/", response_model=List[BlogDomain], status_code=status_code.HTTP_200_OK)
