@@ -30,12 +30,12 @@ async def insert(blog_info: BlogDomain):
                         status_code=status_code.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
-@blog_router.post(path="/update/{blog_id}", response_model=BlogDomain,
-                  status_code=status_code.HTTP_201_CREATED)
+@blog_router.put(path="/update/{blog_id}", response_model=BlogDomain,
+                 status_code=status_code.HTTP_201_CREATED)
 async def update(blog_id: int, blog_info: BlogDomain):
     await update_blog(blog_id=blog_id, blog_info=blog_info)
     return JSONResponse(content=blog_info.to_dict(),
-                    media_type="application/json")
+                        media_type="application/json")
 
 
 @blog_router.get("/", response_model=List[BlogDomain], status_code=status_code.HTTP_200_OK)
