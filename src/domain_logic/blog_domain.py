@@ -6,8 +6,8 @@ from pydantic import BaseModel
 class BlogDomain(BaseModel):
     title: str
     body: str
-    created_date: Optional[datetime] = datetime.now()
-    last_updated: Optional[datetime] = datetime.now()
+    created_date: Optional[datetime] = None
+    last_updated: Optional[datetime] = None
     user_id: int
 
     def to_dict(self):

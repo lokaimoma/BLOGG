@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Callable
 
 from sqlalchemy import select
@@ -18,7 +19,7 @@ async def update_blog(blog_id: int, blog_info: BlogDomain,
         if blog:
             blog.title = blog_info.title
             blog.body = blog_info.body
-            blog.last_updated = blog_info.last_updated
+            blog.last_updated = blog_info.last_updated if blog_info.last_updated else datetime.now()
             await session.commit()
             return
 

@@ -10,8 +10,8 @@ class Blog(SQLAlchemyBase):
     id: int = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     title: str = sa.Column(sa.String, nullable=False)
     body: str = sa.Column(sa.String)
-    created_date: datetime = sa.Column(sa.DateTime)
-    last_updated: datetime = sa.Column(sa.DateTime)
+    created_date: datetime = sa.Column(sa.DateTime, default=datetime.now)
+    last_updated: datetime = sa.Column(sa.DateTime, default=datetime.now)
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
     user = relationship("User", back_populates="blogs")
     engagements: list = relationship(
