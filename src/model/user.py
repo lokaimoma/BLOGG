@@ -8,10 +8,10 @@ from src.util.security.password_util import hash_password
 class User(SQLAlchemyBase):
     __tablename__ = "users"
     id: int = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
-    username: str = sa.Column(sa.String, unique=True,
+    username: str = sa.Column(sa.String(50), unique=True,
                               nullable=False, index=True)
-    email: str = sa.Column(sa.String, unique=True, index=True, nullable=False)
-    password: str = sa.Column(sa.String, nullable=False)
+    email: str = sa.Column(sa.String(100), unique=True, index=True, nullable=False)
+    password: str = sa.Column(sa.String(100), nullable=False)
     blogs: list = relationship(
         "Blog", back_populates="user", cascade="all, delete")
 

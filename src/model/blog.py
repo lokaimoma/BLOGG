@@ -8,8 +8,8 @@ from src.domain_logic.blog_domain import BlogDomain
 class Blog(SQLAlchemyBase):
     __tablename__ = "blogs"
     id: int = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
-    title: str = sa.Column(sa.String, nullable=False)
-    body: str = sa.Column(sa.String)
+    title: str = sa.Column(sa.String(100), nullable=False)
+    body: str = sa.Column(sa.Text(500))
     created_date: datetime = sa.Column(sa.DateTime, default=datetime.now)
     last_updated: datetime = sa.Column(sa.DateTime, default=datetime.now)
     user_id: int = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
