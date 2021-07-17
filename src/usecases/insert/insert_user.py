@@ -5,10 +5,11 @@ from sqlalchemy import func
 from src.model import get_database_session
 from src.domain_logic.user_domain import UserDomain
 from src.model.user import User
+from . import UserInsert
 
 
 async def insert_user(user_domain: UserDomain,
-                      db_session_getter: Callable[[], AsyncSession] = get_database_session) -> bool:
+                      db_session_getter: Callable[[], AsyncSession] = get_database_session) -> UserInsert:
     async with db_session_getter() as session:
         is_user_registered = await __check_if_user_exist(session=session,
                                                          email=user_domain.email,
@@ -19,7 +20,7 @@ async def insert_user(user_domain: UserDomain,
             session.add(user)
             await session.commit()
 
-        return not is_user_registered
+        return UserInsert(not is_user_registered, user)
 
 
 async def __check_if_user_exist(session: AsyncSession,

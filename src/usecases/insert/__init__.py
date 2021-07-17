@@ -1,3 +1,3 @@
 from collections import namedtuple
 
-UserInsert = namedtuple("UserInsert", "isSuccessful user_id")
+UserInsert = namedtuple("UserInsert", "isSuccessful user")
