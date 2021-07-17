@@ -21,7 +21,8 @@ class InsertUser(unittest.TestCase):
                      }
         user_domain = UserDomain(**user_data)
         result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
-        self.assertTrue(result)
+        self.assertTrue(result.isSuccessful)
+        self.assertIsNotNone(result.user)
         await drop_all_tables()
 
     @async_test
@@ -41,7 +42,8 @@ class InsertUser(unittest.TestCase):
 
         user_domain = UserDomain(**user_data)
         result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
-        self.assertFalse(result)
+        self.assertFalse(result.isSuccessful)
+        self.assertIsNone(result.user)
         await drop_all_tables()
 
     @async_test
@@ -61,7 +63,8 @@ class InsertUser(unittest.TestCase):
 
         user_domain = UserDomain(**user_data)
         result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
-        self.assertFalse(result)
+        self.assertFalse(result.isSuccessful)
+        self.assertIsNone(result.user)
         await drop_all_tables()
 
     @async_test
@@ -81,7 +84,8 @@ class InsertUser(unittest.TestCase):
 
         user_domain = UserDomain(**user_data)
         result = await insert_user(user_domain=user_domain, db_session_getter=get_test_database_session)
-        self.assertFalse(result)
+        self.assertFalse(result.isSuccessful)
+        self.assertIsNone(result.user)
         await drop_all_tables()
 
 

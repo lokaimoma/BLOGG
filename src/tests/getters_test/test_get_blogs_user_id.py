@@ -52,7 +52,8 @@ class GetBlogsByUserIdTestCase(unittest.TestCase):
 
         self.assertIsNotNone(blog_list)
         self.assertEqual(len(blog_list), 3)
-        self.assertEqual(blog_list[0].title, blog_data["title"])
+        # blogs are returned in descending order
+        self.assertEqual(blog_list[2].title, blog_data["title"])
         self.assertEqual(blog_list[1].title, blog_data1["title"])
 
         await drop_all_tables()

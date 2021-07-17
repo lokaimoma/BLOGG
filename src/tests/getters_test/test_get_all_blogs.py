@@ -52,7 +52,8 @@ class GeAllBlogsTestCase(unittest.TestCase):
 
         self.assertIsNotNone(result)
         self.assertEqual(len(result), 3)
-        self.assertEqual(result[2].title, blog_data2["title"])
+        # Returned data is in decending order hence last in first out
+        self.assertEqual(result[0].title, blog_data2["title"])
         self.assertEqual(result[1].title, blog_data1["title"])
 
         await drop_all_tables()
