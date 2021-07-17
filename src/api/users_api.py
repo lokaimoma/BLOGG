@@ -18,7 +18,7 @@ async def register(user_info: UserDomain):
         user_data = operation.user.__dict__
         del user_data["password"]
         user = UserLogin(**user_data)
-        return JSONResponse(content=user, media_type="application/json")
+        return JSONResponse(content=user.__dict__, media_type="application/json")
     error = {
         "ERROR": "A user with similar email or user name already exists.",
         "status code": status_code.HTTP_409_CONFLICT

@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy import func
@@ -15,12 +15,14 @@ async def insert_user(user_domain: UserDomain,
                                                          email=user_domain.email,
                                                          username=user_domain.username)
 
+        user: Optional[User] = None
+
         if not is_user_registered:
             user = User(user_domain=user_domain)
             session.add(user)
             await session.commit()
 
-        return UserInsert(not is_user_registered, user)
+        return UserInsert(not is_user_registered, user if user else None)
 
 
 async def __check_if_user_exist(session: AsyncSession,
