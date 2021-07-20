@@ -20,10 +20,20 @@ class BlogDomain(BaseModel):
         }
 
 
-class BlogListitem(BaseModel):
+class BlogListItem(BaseModel):
     id: int
     title: str
     body: str
     created_date: Optional[datetime] = None
     last_updated: Optional[datetime] = None
     user_id: int
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "body": self.body,
+            "created_date": self.created_date.__str__(),
+            "last_update": self.last_updated.__str__(),
+            "user_id": self.user_id
+        }

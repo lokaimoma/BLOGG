@@ -4,7 +4,7 @@ import starlette.status as status_code
 from fastapi import APIRouter
 from starlette.responses import JSONResponse
 
-from src.domain_logic.blog_domain import BlogDomain, BlogListitem
+from src.domain_logic.blog_domain import BlogDomain, BlogListItem
 from src.usecases.insert.insert_blog import insert_blog
 from . import prefix
 from ..domain_logic.blog_domain_detailed import BlogDomainDetail
@@ -41,7 +41,7 @@ async def update(blog_id: int, blog_info: BlogDomain):
                         status_code=status_code.HTTP_201_CREATED)
 
 
-@blog_router.get("/", response_model=List[BlogListitem], status_code=status_code.HTTP_200_OK)
+@blog_router.get("/", response_model=List[BlogListItem], status_code=status_code.HTTP_200_OK)
 async def get_all():
     blog_list = await get_all_blogs()
     blog_list_serialized = [blog.to_dict() for blog in blog_list]

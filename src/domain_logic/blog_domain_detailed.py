@@ -2,11 +2,11 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from src.domain_logic.blog_domain import BlogDomain
+from src.domain_logic.blog_domain import BlogDomain, BlogListItem
 
 
 class BlogDomainDetail(BaseModel):
-    blog: BlogDomain
+    blog: BlogListItem
     current_user_likes: Optional[bool]
     likes_count: int
     dislikes_count: int

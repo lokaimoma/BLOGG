@@ -21,6 +21,7 @@ async def get_blog_details(blog_id: int, current_user_id: Optional[int] = None,
             return blog
 
         blog_domain_data = {
+            "id": blog.id,
             "title": blog.title,
             "body": blog.body,
             "created_date": blog.created_date,
