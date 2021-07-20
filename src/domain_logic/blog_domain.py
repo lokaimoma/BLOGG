@@ -20,7 +20,7 @@ class BlogDomain(BaseModel):
         }
 
 
-class BlogListitem:
+class BlogListitem(BaseModel):
     id: int
     title: str
     body: str
