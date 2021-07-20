@@ -36,7 +36,7 @@ async def get_blog_details(blog_id: int, current_user_id: Optional[int] = None,
                 current_user_like_status = current_user_like_status[0].isLiked
             else:
                 current_user_like_status = None
-                
+
         blog_detail_domain_data = {
             "blog": blog_domain_data,
             "likes_count": likes_count,

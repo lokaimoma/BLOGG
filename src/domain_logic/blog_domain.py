@@ -18,3 +18,12 @@ class BlogDomain(BaseModel):
             "last_update": self.last_updated.__str__(),
             "user_id": self.user_id
         }
+
+
+class BlogListitem:
+    id: int
+    title: str
+    body: str
+    created_date: Optional[datetime] = None
+    last_updated: Optional[datetime] = None
+    user_id: int
